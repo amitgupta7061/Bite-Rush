@@ -1,6 +1,6 @@
 import jwt from 'jsonwebtoken';
 
-export const authAdmin = async (req, res) => {
+export const authAdmin = async (req, res, next) => {
     try {
         const {aToken} = req.body;
 
@@ -11,7 +11,16 @@ export const authAdmin = async (req, res) => {
             })
         }
 
-        const decoded_token = await jwt.verify(aToken, process.env.ADMIN_EMAIL);
+        const decoded_token = jwt.verify(aToken, process.env.JWT_SECRET);
+
+        if(decoded_token.email !== process.env.ADMIN_EMAIL){
+            return res.json({
+                success:false,
+                message:'Un-Authorized access'
+            })
+        }
+
+        next();
         
     } catch (error) {
         console.log('error in authUser', error);
