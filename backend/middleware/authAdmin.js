@@ -2,16 +2,15 @@ import jwt from 'jsonwebtoken';
 
 export const authAdmin = async (req, res, next) => {
     try {
-        const {aToken} = req.body;
-
-        if(!aToken){
+        const {atoken} = req.headers;
+        if(!atoken){
             return res.json({
                 success:false,
                 message:'Un-Authorized access'
             })
         }
 
-        const decoded_token = jwt.verify(aToken, process.env.JWT_SECRET);
+        const decoded_token = jwt.verify(atoken, process.env.JWT_SECRET);
 
         if(decoded_token.email !== process.env.ADMIN_EMAIL){
             return res.json({

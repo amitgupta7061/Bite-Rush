@@ -19,7 +19,7 @@ const itemSchema = new mongoose.Schema({
     },
     available:{
         type:Boolean,
-        default:false,
+        default:true,
     }
 })
 
