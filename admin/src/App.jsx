@@ -4,6 +4,12 @@ import LoginPage from './pages/LoginPage'
 import { Toaster } from 'react-hot-toast'
 import Sidebar from './components/Sidebar'
 import { Routes, Route} from 'react-router-dom'
+import Navbar from './components/Navbar'
+import Dashboard from './components/Dashboard'
+import Order from './components/Order'
+import AddItem from './components/AddItem'
+import Menu from './components/Menu'
+import Users from './components/Users'
 
 const App = () => {
 
@@ -18,13 +24,16 @@ const App = () => {
     :
     <div>
       <Toaster />
-      <div className='flex h-screen w-full'>
+      <Navbar />
+      <div className='flex items-start'>
         <Sidebar />
-        <div>
-          <Routes>
-            <Route />
-          </Routes>
-        </div>
+        <Routes>
+          <Route path='/dashboard' element={<Dashboard />}/>
+          <Route path='/orders' element={<Order />}/>
+          <Route path='/add-item' element={<AddItem />}/>
+          <Route path='/see-items' element={<Menu />}/>
+          <Route path='/see-users' element={<Users />}/>
+        </Routes>
       </div>
     </div>
   )
