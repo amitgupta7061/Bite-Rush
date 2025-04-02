@@ -17,6 +17,10 @@ const itemSchema = new mongoose.Schema({
         type:String,
         required:true,
     },
+    category:{
+        type:String,
+        required:true,
+    },
     available:{
         type:Boolean,
         default:true,

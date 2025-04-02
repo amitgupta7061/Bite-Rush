@@ -39,10 +39,10 @@ export const adminLogin = async(req, res) => {
 
 export const addItem = async (req, res) => {
     try {
-        const {name, price, desc} = req.body;
+        const {name, price, desc, category} = req.body;
         const image = req.file;
 
-        if(!name || !price || !desc || !image){
+        if(!name || !price || !desc || !image || !category){
             return res.json({
                 success:false,
                 message:'All Fields are mandatory'
@@ -55,7 +55,8 @@ export const addItem = async (req, res) => {
             image:uploadImage.secure_url,
             name,
             price,
-            desc
+            desc,
+            category
         })
 
         await newItem.save();
